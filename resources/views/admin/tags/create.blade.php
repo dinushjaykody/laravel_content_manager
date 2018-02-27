@@ -4,7 +4,7 @@
     @include('admin.includes.errors')
 
     <div class="panel panel-default">
-        <div class="panel-heading"> Create a new Tag</div>
+        <div class="panel-heading"> Create Tag</div>
         <div class="panel-body">
             <form action="{{route('tag.store')}}" method="post">
                 {{csrf_field()}}

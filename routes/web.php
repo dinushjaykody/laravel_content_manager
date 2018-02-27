@@ -131,14 +131,24 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'] , function (){
         'as' => 'users'
     ]);
 
-    Route::get('/users/create', [
+    Route::get('/user/create', [
         'uses' => 'UsersController@create',
         'as' => 'user.create'
     ]);
 
-    Route::post('/users/store', [
+    Route::post('/user/store', [
         'uses' => 'UsersController@store',
         'as' => 'user.store'
+    ]);
+
+    Route::get('/user/admin/{id}', [
+        'uses' => 'UsersController@admin',
+        'as' => 'user.admin'
+    ]);
+
+    Route::get('/user/not-admin/{id}', [
+        'uses' => 'UsersController@notAdmin',
+        'as' => 'user.not.admin'
     ]);
 });
 

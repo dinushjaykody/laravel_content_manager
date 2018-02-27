@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -51,8 +56,9 @@ class UsersController extends Controller
 
         ]);
 
-        $prfile = Profile::create([
-            'user_id'      => $user->id
+        $profile = Profile::create([
+            'user_id'      => $user->id,
+            'avatar'       => 'uploads/avatars/avatar.png'
         ]);
 
         Session::flash('success' , 'User Created Successfully');
@@ -100,8 +106,31 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+
+    public function admin($id)
     {
-        //
+
+        $user = User::find($id);
+
+        $user->admin = 1;
+        $user->save();
+
+        Session::flash('success' , 'Successfully changed user permission');
+
+        return redirect()->route('users');
+    }
+
+    public function notAdmin($id)
+    {
+
+        $user = User::find($id);
+
+        $user->admin = 0;
+        $user->save();
+
+        Session::flash('success' , 'Successfully changed user permission');
+
+        return redirect()->route('users');
     }
 }

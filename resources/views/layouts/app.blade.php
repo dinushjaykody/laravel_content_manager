@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> Content Manager (Admin Section) </title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -30,7 +30,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        Content Manager (Admin Section)
                     </a>
                 </div>
 
@@ -81,40 +81,33 @@
                                 <a href="{{route('home')}}">Home</a>
                             </li>
 
+
                             <li class="list-group-item">
                                 <a href="{{route('categories')}}">Categories</a>
                             </li>
 
                             <li class="list-group-item">
-                                <a href="{{route('users')}}">Users</a>
+                                <a href="{{route('categories.create')}}">Create new category</a>
                             </li>
 
                             <li class="list-group-item">
-                                <a href="{{route('user.create')}}"> Create a User</a>
+                                <a href="{{route('tags')}}">All tags</a>
                             </li>
 
                             <li class="list-group-item">
-                                <a href="{{route('tags')}}">All Tags</a>
+                                <a href="{{route('tag.create')}}">Create tags</a>
                             </li>
 
                             <li class="list-group-item">
-                                <a href="{{route('tag.create')}}">Create Tags</a>
+                                <a href="{{route('posts')}}">All posts</a>
                             </li>
 
                             <li class="list-group-item">
-                                <a href="{{route('posts')}}">All Posts</a>
+                                <a href="{{route('post.trashed')}}">All trashed posts</a>
                             </li>
 
                             <li class="list-group-item">
-                                <a href="{{route('post.trashed')}}">All trashed Posts</a>
-                            </li>
-
-                            <li class="list-group-item">
-                                <a href="{{route('categories.create')}}">Create new Category</a>
-                            </li>
-
-                            <li class="list-group-item">
-                                <a href="{{route('post.create')}}">Create new Post</a>
+                                <a href="{{route('post.create')}}">Create new post</a>
                             </li>
                         </ul>
                     </div>

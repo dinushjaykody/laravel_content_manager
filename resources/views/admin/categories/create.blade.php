@@ -4,7 +4,7 @@
     @include('admin.includes.errors')
 
     <div class="panel panel-default">
-        <div class="panel-heading"> Create a new Category</div>
+        <div class="panel-heading"> Create New Category</div>
         <div class="panel-body">
             <form action="{{route('categories.store')}}" method="post">
                 {{csrf_field()}}

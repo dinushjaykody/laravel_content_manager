@@ -4,7 +4,7 @@
     @include('admin.includes.errors')
 
     <div class="panel panel-default">
-        <div class="panel-heading"> Create a New User</div>
+        <div class="panel-heading"> Create New User</div>
         <div class="panel-body">
             <form action="{{route('user.store')}}" method="post">
                 {{csrf_field()}}
