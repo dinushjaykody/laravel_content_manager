@@ -108,6 +108,12 @@ class CategoriesController extends Controller
         $category = Category::find($id);
 
         if ($category) {
+
+            //delete the posts associated with category first
+            foreach ($category->posts as $post){
+                $post->forceDelete();
+            }
+
             $category->delete();
         }
 

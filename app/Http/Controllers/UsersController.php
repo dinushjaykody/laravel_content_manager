@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('admin');
+//    }
 
     /**
      * Display a listing of the resource.
@@ -132,5 +132,21 @@ class UsersController extends Controller
         Session::flash('success' , 'Successfully changed user permission');
 
         return redirect()->route('users');
+    }
+
+    public function destroy($id){
+        $user = User::find($id);
+
+        if ($user) {
+
+            $user->profile->delete();
+            $user->delete();
+
+            Session::flash('success' , 'User Deleted');
+        } else {
+            Session::flash('info' , 'User Not Found');
+        }
+
+        return redirect()->back();
     }
 }

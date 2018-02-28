@@ -134,7 +134,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'] , function (){
     Route::get('/user/create', [
         'uses' => 'UsersController@create',
         'as' => 'user.create'
-    ]);
+    ])->middleware('admin');
 
     Route::post('/user/store', [
         'uses' => 'UsersController@store',
@@ -144,11 +144,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'] , function (){
     Route::get('/user/admin/{id}', [
         'uses' => 'UsersController@admin',
         'as' => 'user.admin'
-    ]);
+    ])->middleware('admin');
+
+    Route::get('/user/delete/{id}', [
+        'uses' => 'UsersController@destroy',
+        'as' => 'user.admin.delete'
+    ])->middleware('admin');
 
     Route::get('/user/not-admin/{id}', [
         'uses' => 'UsersController@notAdmin',
         'as' => 'user.not.admin'
+    ])->middleware('admin');
+
+    Route::get('/user/profile', [
+        'uses' => 'ProfilesController@index',
+        'as' => 'user.profile'
+    ]);
+
+    Route::post('/user/profile/update', [
+        'uses' => 'ProfilesController@update',
+        'as' => 'user.profile.update'
     ]);
 });
 
