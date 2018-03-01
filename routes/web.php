@@ -11,15 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+    'uses' => 'FrontEndController@index',
+    'as' => 'index'
+]);
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'] , function (){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/posts', [
         'uses' => 'PostsController@index',
         'as' => 'posts'
