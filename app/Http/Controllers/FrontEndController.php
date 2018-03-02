@@ -18,7 +18,13 @@ class FrontEndController extends Controller
     {
         return view('index')->with('title' , Setting::first()->site_name)
             ->with('categories' , Category::take(5)->get())
-            ->with('first_post', Post::orderBy('created_at' , 'desc')->first());
+            ->with('first_post', Post::orderBy('created_at' , 'desc')->first())
+            ->with('second_post',Post::orderBy('created_at', 'desc')->skip(1)->take(1)->get()->first())
+            ->with('third_post',Post::orderBy('created_at', 'desc')->skip(2)->take(1)->get()->first())
+            ->with('computers', Category::find(5))
+            ->with('entertainment', Category::find(6))
+            ->with('mobile', Category::find(7))
+            ->with('settings', Setting::first());
     }
 
     /**
@@ -85,5 +91,15 @@ class FrontEndController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function singlePost($slug)
+    {
+        $post = Post::where('slug' , $slug)->first();
+
+        return view('single')->with('post' , $post)
+            ->with('title' , $post->title)
+            ->with('categories' , Category::take(5)->get())
+            ->with('settings', Setting::first());
     }
 }
