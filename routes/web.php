@@ -181,5 +181,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'uses' => 'FrontEndController@singlePost',
         'as' => 'post.single'
     ]);
-});
 
+    Route::get('/category/{id}', [
+        'uses' => 'FrontEndController@category',
+        'as' => 'category.single'
+    ]);
+
+    Route::get('/tag/{id}', [
+        'uses' => 'FrontEndController@tag',
+        'as' => 'tag.single'
+    ]);
+
+
+    Route::post('/results', [
+        'uses' => 'FrontEndController@results',
+        'as' => 'post.results'
+    ]);
+});
